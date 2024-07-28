@@ -27,7 +27,7 @@ function addOne(score) {
     setImage()
 }
 
-circle.addEventListener("click", (e) => {
+function handleClickOrTouch(e) {
   const rect = circle.getBoundingClientRect();
 
   const offsetX = e.clientX - rect.left - rect.width / 2;
@@ -59,6 +59,13 @@ circle.addEventListener("click", (e) => {
   setTimeout(() => {
     plusOne.remove()
   }, 2000)
+}
+
+circle.addEventListener("click", handleClickOrTouch);
+circle.addEventListener('touchstart',(e) => {
+  for (let i = 0; i < e.touches.length; i++) {
+    handleClickOrTouch(e.touches[i]);
+  }
 });
 
 start()
